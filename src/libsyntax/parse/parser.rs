@@ -644,7 +644,11 @@ impl<'a> Parser<'a> {
             let span = self.span;
             self.span_err(span,
                           &format!("expected identifier, found keyword `{}`",
-                                  token_str));
+                                   token_str));
+            if token_str == "let" {
+                let m = format!("`let` is not an expression and so it cannot be used this way");
+                self.diagnostic().span_note_without_error(span, &m);
+            }
         }
     }
 

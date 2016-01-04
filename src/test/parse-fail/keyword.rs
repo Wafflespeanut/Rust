@@ -13,3 +13,9 @@
 pub mod break {
     //~^ ERROR expected identifier, found keyword `break`
 }
+
+fn main() {
+    let x = (let y = 1);    //~ NOTE: `let` is not an expression and so it cannot be used this way
+    //~^ ERROR expected identifier, found keyword `let`
+    //~^^ ERROR expected one of `!`, `)`, `,`, `.`, `::`, `{`, or an operator, found `y`
+}
